@@ -46,7 +46,6 @@ main(int argc, char ** argv)
 
   if (sigaction(SIGINT, &sa, NULL) == -1
       || sigaction(SIGTERM, &sa, NULL) == -1
-      // || sigaction(SIGKILL, &sa, NULL) == -1
      ) {
     fprintf(stderr, "Couldn't install signal handler\n");
     exit(EXIT_FAILURE);
