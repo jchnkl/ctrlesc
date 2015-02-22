@@ -64,9 +64,6 @@ main(int argc, char ** argv)
 
     if (event.type == KeyPress) {
       XKeyEvent * e = &event.xkey;
-        fprintf(stderr, "KeyPress: %s\n",
-                XKeysymToString(XKeycodeToKeysym(dpy, e->keycode, 0)));
-
 
       if (e->keycode == kc_escape) {
         int revert;
@@ -74,20 +71,7 @@ main(int argc, char ** argv)
 
         XGrabKeyboard(dpy, focus, False, GrabModeAsync, GrabModeAsync, CurrentTime);
 
-        fprintf(stderr, "grabbed on %u\n", // release on window %u, subwindow %u, focus %u\n",
-                // XKeysymToString(XKeycodeToKeysym(dpy, e->keycode, 0)),
-                // (uint)e->window,
-                // (uint)e->subwindow,
-                (uint)focus);
-
       } else if (focus != None) {
-
-        fprintf(stderr, "%s press   on window %u, subwindow %u, focus %u\n",
-                XKeysymToString(XKeycodeToKeysym(dpy, e->keycode, 0)),
-                (uint)e->window,
-                (uint)e->subwindow,
-                (uint)focus);
-
         want_ctrl = True;
 
         e->window = focus;
@@ -103,12 +87,6 @@ main(int argc, char ** argv)
 
       if (e->keycode == kc_escape) {
         if (! want_ctrl) {
-
-          fprintf(stderr, "%s release on window %u, subwindow %u, focus %u\n",
-                  XKeysymToString(XKeycodeToKeysym(dpy, e->keycode, 0)),
-                  (uint)e->window,
-                  (uint)e->subwindow,
-                  (uint)focus);
 
           e->type = KeyPress;
           e->window = focus;
