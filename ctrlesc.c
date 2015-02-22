@@ -18,11 +18,9 @@ handler(int signum)
     kc.key = XK_Escape;
     kc.auto_repeat_mode = AutoRepeatModeOff;
     XChangeKeyboardControl(g_dpy, KBKey | KBAutoRepeatMode, &kc);
-    fprintf(stderr, "handler\n");
   } else {
-    for (int n = 0; n < 32; ++n) {
-      fprintf(stderr, "key: %c\n", g_keyboard_state.auto_repeats[n]);
-    }
+    // stub, until i find out how to use XKeyboardState to enable auto repeat
+    // for single keys again
   }
 
   exit(EXIT_SUCCESS);
